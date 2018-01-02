@@ -7,6 +7,8 @@ git clone https://github.com/ashvin777/pilosolapp
 cd pilosolapp
 # Install dependencies and run the app
 npm install && npm run clean && npm start
+
+npm install -g electron-packager
 ```
 
 ### To package as a dmg
