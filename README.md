@@ -25,3 +25,8 @@ npm install -g electron-packager
 `npm run build:win32` - to build for 32-bit Windows.
 
 `npm run build:win64` - to build for 64-bit Windows.
+
+### Help
+Convert CSV to SQL -
+
+https://codebeautify.org/csv-to-sql-converter

@@ -8,17 +8,21 @@
 
     <ul class="nav nav-tabs">
       <li class="nav-item" ng-repeat="tab in tabs">
-        <a class="nav-link" ng-class="{ active: activeTab === tab }" ng-click="setTab(tab)">{{tab}}</a>
+        <a class="nav-link" ng-class="{ active: activeTab.id === tab.id }" ng-click="setTab(tab)">{{tab.label}}</a>
       </li>
     </ul>
 
     <div class="tab-content">
 
-      <div class="tab-pane fade show" ng-class="{ active: activeTab === tabs[0]}">
-        <ng-include src="'dashboard/table.html'"></ng-include>
+      <div class="tab-pane fade show" ng-class="{ active: activeTab.id === 'runtime'}">
+        <ng-include src="'dashboard/runtime.html'"></ng-include>
       </div>
 
-      <div class="tab-pane fade show" ng-class="{ active: activeTab === tabs[1]}">
+      <div class="tab-pane fade show" ng-class="{ active: activeTab.id === 'reports'}">
+        <ng-include src="'dashboard/reports.html'"></ng-include>
+      </div>
+
+      <div class="tab-pane fade show" ng-class="{ active: activeTab.id === 'shifts'}">
         <ng-include src="'dashboard/shifts.html'"></ng-include>
       </div>
 

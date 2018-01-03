@@ -15,8 +15,8 @@ header {
 }
 
 .form-control {
-  padding-top: 15px;
-  padding-bottom: 15px;
+  /* padding-top: 15px;
+  padding-bottom: 15px; */
 }
 
 .nav-tabs {
@@ -48,6 +48,8 @@ header {
 .tab-content>.tab-pane {
   background: #212529;
   height: 100%;
+  color: white;
+  overflow: auto;
 }
 
 .page {
@@ -71,5 +73,34 @@ header {
 .tab-pane form {
   padding: 10px;
   padding-top: 20px;
+}
+
+.bg-black-light{
   background: #32383e;
+}
+
+.bg-black-dark{
+  background: #212529;
+}
+
+.page-tab-runtime{
+  text-align: center;
+}
+
+.page-tab-runtime h3{
+  padding: 50px 200px;
+}
+
+.page-tab-runtime form.form-inline{
+  text-align: center;
+  width: 500px;
+  margin: auto;
+}
+
+.page-tab-runtime form.form-inline button{
+  margin-left: 20px;
+}
+
+.process-status{
+  margin: 50px 0;
 }

@@ -1,0 +1,33 @@
+<div class="page-tab page-tab-runtime">
+
+  <h3>NOTE:
+    <span class="text-warning">Before starting the process please make sure to choose the frame type</span>
+  </h3>
+
+
+  <form class="form-inline">
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <label class="input-group-text">Frame Type</label>
+      </div>
+      <select class="custom-select" ng-options="frame.name for frame in frames" ng-model="frame"></select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" ng-click="setSelectedFrame(frame)">Set Frame</button>
+
+  </form>
+
+
+  <div class="process-status">
+
+    <p>
+      <b>Selected Frame</b>
+      <br/> {{selectedFrame.name}}</p>
+    <p>
+      <b>Next Frame Number</b>
+      <br/>01/11/2017-B-0001</p>
+
+    <!-- <p><b>Processs Status</b> <br/>Running</p> -->
+  </div>
+</div>

@@ -1,10 +1,11 @@
 function LoginController($scope, $rootScope, $http, $state) {
   $scope.username = '';
   $scope.password = '';
+  const BASE_URL = 'http://localhost:1880/';
 
   $scope.login = function () {
-    
-    $http.get('http://localhost:1880/users')
+
+    $http.get(BASE_URL + 'users')
       .then((res) => {
 
         var isMatched = false;
@@ -31,5 +32,4 @@ let LoginComponent = {
 };
 
 angular.module('app')
-  .component('loginComponent', LoginComponent)
-  ;
+  .component('loginComponent', LoginComponent);
