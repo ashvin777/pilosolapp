@@ -24,16 +24,24 @@
         "build:armv7l": "npm run pack:armv7l && fpm -s dir -t deb -f -n node-red-electron -v $npm_package_version -m conway@uk.ibm.com -a armv7l -p ../electron-bin -C build/PilosolApp-linux-armv7l --prefix=/opt/node-red --after-install=afterinst.sh ./"
     },
     "dependencies": {
-        "express": "^4.14.0",
+        "angular": "^1.6.8",
+        "angularjs": "0.0.1",
+        "body-parser": "^1.18.2",
+        "express": "^4.16.2",
+        "gulp": "^3.9.1",
         "node-red": "*",
+        "node-red-contrib-msg-aggregator": "0.0.4",
         "node-red-contrib-play-audio": "*",
+        "node-red-contrib-uibuilder": "^1.0.4",
         "node-red-contrib-web-worldmap": "*",
         "node-red-dashboard": "*",
         "node-red-node-base64": "*",
         "node-red-node-geofence": "*",
         "node-red-node-random": "*",
         "node-red-node-smooth": "*",
-        "postgrestor": "0.0.2"
+        "postgrestor": "0.0.2",
+        "sqlite3": "^3.1.13",
+        "url": "^0.11.0"
     },
     "devDependencies": {
         "electron": "^1.6.11",

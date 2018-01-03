@@ -1,0 +1,28 @@
+html, body{
+  font-size: 20px;
+}
+
+header {
+  height: 100px;
+  line-height: 100px;
+  font-size: 34px;
+  font-weight: bold;
+  text-align: center;
+  background: lightgray;
+}
+
+.body {
+  padding: 50px;
+  height: calc( 100% - 50px );
+}
+
+.form-control{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+
+.page-login .body{
+  width: 700px;
+  margin: auto;
+}
