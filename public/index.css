@@ -1,5 +1,7 @@
-html, body{
+html,
+body {
   font-size: 20px;
+  height: 100%;
 }
 
 header {
@@ -8,21 +10,66 @@ header {
   font-size: 34px;
   font-weight: bold;
   text-align: center;
-  background: lightgray;
+  background: #32383e;
+  color: white;
 }
 
-.body {
-  padding: 50px;
-  height: calc( 100% - 50px );
-}
-
-.form-control{
+.form-control {
   padding-top: 15px;
   padding-bottom: 15px;
 }
 
+.nav-tabs {
+  border-bottom: 1px solid #32383e;
+}
 
-.page-login .body{
+.nav-tabs .nav-item {
+  margin-bottom: -2px;
+}
+
+.nav-tabs .nav-link {
+  cursor: pointer;
+}
+
+.nav-tabs .nav-link.active {
+  color: white;
+  background: #32383e;
+  border: 0;
+}
+
+.nav-tabs .nav-link.active:hover {
+  color: white;
+}
+
+.tab-content {
+  height: calc( 100% - 51px);
+}
+
+.tab-content>.tab-pane {
+  background: #212529;
+  height: 100%;
+}
+
+.page {
+  height: 100%;
+}
+
+.page-login .body,
+.page-dashboard .body {
   width: 700px;
   margin: auto;
+  padding: 50px;
+  margin-top: 10px;
+  height: calc( 100% - 110px);
+}
+
+.page-dashboard .body {
+  width: 100%;
+  padding: 10px;
+}
+
+.tab-pane form {
+  padding: 10px;
+  padding-top: 20px;
+  background: #32383e;
 }

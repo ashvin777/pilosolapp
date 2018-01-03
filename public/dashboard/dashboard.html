@@ -1,0 +1,28 @@
+<div class="page page-dashboard">
+  <header>
+    iRobotics
+    <span class="small">Welcome {{username}}</span>
+  </header>
+
+  <div class="body">
+
+    <ul class="nav nav-tabs">
+      <li class="nav-item" ng-repeat="tab in tabs">
+        <a class="nav-link" ng-class="{ active: activeTab === tab }" ng-click="setTab(tab)">{{tab}}</a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+
+      <div class="tab-pane fade show" ng-class="{ active: activeTab === tabs[0]}">
+        <ng-include src="'dashboard/table.html'"></ng-include>
+      </div>
+
+      <div class="tab-pane fade show" ng-class="{ active: activeTab === tabs[1]}">
+        <ng-include src="'dashboard/shifts.html'"></ng-include>
+      </div>
+
+    </div>
+
+  </div>
+</div>
