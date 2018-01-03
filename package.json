@@ -30,6 +30,7 @@
         "express": "^4.16.2",
         "gulp": "^3.9.1",
         "node-red": "*",
+        "node-red-contrib-excel": "0.0.3",
         "node-red-contrib-msg-aggregator": "0.0.4",
         "node-red-contrib-play-audio": "*",
         "node-red-contrib-uibuilder": "^1.0.4",

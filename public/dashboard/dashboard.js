@@ -89,6 +89,17 @@ function DashboardController($scope, $rootScope, $http) {
     });
   }
 
+  $scope.downloadLogs = function () {
+
+    var path = prompt('Enter folder path');
+
+    if (path) {
+      $http.get(BASE_URL + 'downloadLogs?path='+path).then(function () {
+      
+      });
+    }  
+  }
+
   $scope.getFrames();
   $scope.getComponents();
   $scope.getLogs();
