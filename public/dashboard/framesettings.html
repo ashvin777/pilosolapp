@@ -1,0 +1,12 @@
+<form name="framesettings" id="framesettings" class="form-inline" ng-repeat="frame in frames">
+
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <label class="input-group-text">Enter {{frame.name}} Starting Number</label>
+    </div>
+    <input type="text" class="form-control" ng-model="frame.serial" placeholder="Starting number..." required>
+  </div>
+
+</form>
+
+<button type="submit" form="framesettings" class="btn btn-primary btn-lg" style="margin-left: 10px" ng-click="saveFrames(frames)">Save</button>

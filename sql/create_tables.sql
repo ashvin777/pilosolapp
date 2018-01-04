@@ -1,7 +1,8 @@
 CREATE TABLE frames (
-	id bigserial NOT NULL,
-	name text NOT NULL,
-	PRIMARY KEY (ID)
+  id bigserial NOT NULL,
+  name text NOT NULL,
+  serial text,
+  PRIMARY KEY (ID)
 );
 
 CREATE TABLE components (
@@ -40,6 +41,3 @@ CREATE INDEX idx_frames ON frames(id);
 CREATE INDEX idx_components ON components(id);
 CREATE INDEX idx_logs ON logs(id);
 CREATE INDEX idx_users ON users(id);
-
-INSERT INTO USERS(id, username, password)
-VALUES(1, 'admin', 'admin');

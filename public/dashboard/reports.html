@@ -1,7 +1,18 @@
 <form class="form-inline">
 
   <div class="form-group mx-sm-3 mb-2">
-    <input type="text" class="form-control" placeholder="Add new shift name...">
+    <select class="custom-select" ng-model="sortBy">
+      <option selected>Sort By...</option>
+      <option value="frameType">Frame Type</option>
+      <option value="frameNumber">Frame Number</option>
+      <option value="shiftNumber">Shift Number</option>
+      <option value="component">Component</option>
+      <option value="status">Status</option>
+    </select>
+  </div>
+
+  <div class="form-group mx-sm-3 mb-2">
+    <input type="text" class="form-control" placeholder="Enter search string...">
   </div>
 
   <div class="form-group mx-sm-3 mb-2">
@@ -22,24 +33,25 @@
 <table class="table table-dark table-striped table-bordered table-sm">
   <thead>
     <tr class="text-secondary">
-      <th scope="col">#id</th>
-      <th scope="col">Frame Name</th>
-      <th scope="col">Frame Number</th>
+      <th scope="col">Sr. No.</th>
+      <th width="300px" scope="col">Frame Number</th>
+      <th scope="col">Frame Type</th>
       <th scope="col">Component</th>
       <th scope="col">Shift Number</th>
-      <th scope="col">Status</th>
-      <th scope="col">Timestamp</th>
+      <th width="100px"scope="col">Status</th>
+      <th width="200px" scope="col">Timestamp</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="log in logs | orderBy:log.id" ng-class="{ 'text-danger' : log.status != 'ok'}">
+    <tr ng-repeat="log in logs track by log.id | orderBy:log.id" ng-class="{ 'text-danger' : log.status != 'ok'}">
       <th scope="row">{{log.id}}</th>
+      <td width="300px" ng-if="log.framenumber != '---'">{{getTime(log.timestamp) | date:'MM/dd/yyyy' }}/{{log.shiftnumber}}/{{log.framenumber}}</td>
+      <td width="300px" ng-if="log.framenumber == '---'">{{log.framenumber}}</td>
       <td>{{log.frametype}}</td>
-      <td>{{log.framenumber}}</td>
       <td>{{log.framecomponent}}</td>
       <td>{{log.shiftnumber}}</td>
-      <td>{{log.status}}</td>
-      <td>{{getTime(log.timestamp) | date:'MM/dd/yyyy HH:mm' }}</td>
+      <td width="100px">{{log.status}}</td>
+      <td width="200px">{{getTime(log.timestamp) | date:'MM/dd/yyyy HH:mm' }}</td>
     </tr>
   </tbody>
 </table>
