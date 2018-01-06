@@ -1,14 +1,17 @@
-function DashboardController($scope, $rootScope, $http, $interval) {
+function DashboardController($scope, $rootScope, $http, $interval, $timeout) {
 
   $scope.username = $rootScope.username || 'admin';
   $scope.frames = [];
   $scope.components = [];
   $scope.logs = [];
   $scope.shifts = [];
+  $scope.lastLog = {};
 
-  $scope.selectedFrame = '';
+  $scope.searchBy = '';
+
+  $scope.selectedFrame = null;
   $scope.selectedShift = {};
-  
+
   const BASE_URL = 'http://localhost:1880/';
 
   $scope.tabs = [{
@@ -38,6 +41,8 @@ function DashboardController($scope, $rootScope, $http, $interval) {
   $scope.getFrames = function () {
     $http.get(BASE_URL + 'frames').then(function (frames) {
       $scope.frames = frames.data;
+
+      $scope.getSelectedFrame();
     });
   }
 
@@ -47,9 +52,23 @@ function DashboardController($scope, $rootScope, $http, $interval) {
     });
   }
 
+  var isLoadedForFirstTime = false;
   $scope.getLogs = function () {
     $http.get(BASE_URL + 'logs').then(function (logs) {
-      $scope.logs = logs.data;
+
+      $timeout(function () {
+        if ($scope.logs.length !== logs.data.length) {
+          $scope.logs = logs.data;
+          $scope.lastLog = $scope.logs[0];
+          $scope.logsAdapter.reload(0);
+        } else if (isLoadedForFirstTime == false) {
+          $scope.logs = logs.data;
+          $scope.lastLog = $scope.logs[0];
+          $scope.logsAdapter.reload(0);
+          isLoadedForFirstTime = true;
+        }
+      });
+
     });
   }
 
@@ -61,7 +80,9 @@ function DashboardController($scope, $rootScope, $http, $interval) {
 
   $scope.setSelectedFrame = function (frame) {
     $scope.selectedFrame = frame;
-    $http.put(BASE_URL + 'selectedFrame', { selectedFrame: frame }).then(function (selectedFrame) {
+    $http.put(BASE_URL + 'selectedFrame', {
+      selectedFrame: frame
+    }).then(function (selectedFrame) {
       alert('Frame set successfully');
     });
   }
@@ -97,10 +118,10 @@ function DashboardController($scope, $rootScope, $http, $interval) {
     var path = window.prompt('Enter folder path');
 
     if (path) {
-      $http.get(BASE_URL + 'downloadLogs?path='+path).then(function () {
-      
+      $http.get(BASE_URL + 'downloadLogs?path=' + path).then(function () {
+
       });
-    }  
+    }
   }
 
   $scope.saveFrames = function (frames) {
@@ -114,39 +135,70 @@ function DashboardController($scope, $rootScope, $http, $interval) {
       }
     });
 
+    let successCount = 0;
     if (isValid) {
       frames.forEach(function (frame) {
         $http.post(BASE_URL + 'frame', frame).then((res) => {
-          alert('Frame updated successfully');
+          successCount++;
+
+          if (successCount == 3) {
+            alert('Frame updated successfully');
+          }
         });
       });
-    }  
-    
+    }
+
   }
 
-  $scope.getFormattedDate = function(date) {
+  $scope.getFormattedDate = function (date) {
     var year = date.getFullYear();
-  
+
     var month = (1 + date.getMonth()).toString();
     month = month.length > 1 ? month : '0' + month;
-  
+
     var day = date.getDate().toString();
     day = day.length > 1 ? day : '0' + day;
-    
+
     return month + '-' + day + '-' + year;
   }
 
   $scope.getFrames();
   $scope.getComponents();
-  
+
   $scope.getLogs();
 
   $interval(function () {
     $scope.getLogs();
-  }, 2000);
+  }, 5000);
 
-  $scope.getSelectedFrame();
+  //$scope.getSelectedFrame();
   $scope.getShifts();
+
+  var get = function (index, count, success) {
+    $timeout(function () {
+
+      // If a negative, reset to start of list.
+      if (index < 0) {
+        count = count + index;
+        index = 0;
+
+        if (count <= 0) {
+          success([]);
+          return;
+        }
+      }
+
+      var result = [];
+      for (var i = index; i <= index + count - 1; i++) {
+        result.push($scope.logs[i]);
+      }
+      success(result);
+    }, 100);
+  };
+
+  $scope.logsDatasource = {
+    get: get
+  };
 
 }
 

@@ -1,12 +1,14 @@
 CREATE TABLE frames (
-  id bigserial NOT NULL,
-  name text NOT NULL,
-  serial text,
-  PRIMARY KEY (ID)
+    id bigserial NOT NULL,
+		name text NOT NULL,
+		number text,
+		serial text,
+		PRIMARY KEY (ID)
 );
 
 CREATE TABLE components (
 	id bigserial NOT NULL,
+	number text,
 	name  text NOT NULL,
 	frameId bigserial REFERENCES frames(id),
 	PRIMARY KEY (ID)
@@ -32,7 +34,7 @@ CREATE TABLE shifts (
 );
 
 CREATE TABLE users (
-	id integer NOT NULL,
+	id bigserial NOT NULL,
 	username text NOT NULL,
 	password text NOT NULL
 );

@@ -49,7 +49,7 @@ header {
   background: #212529;
   height: 100%;
   color: white;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .page {
@@ -74,6 +74,7 @@ header {
 
 thead,
 tbody tr {
+  font-size: 16px;
   display: table;
   width: 100%;
   table-layout: fixed;
@@ -82,10 +83,11 @@ tbody tr {
 .page-dashboard table{
   padding: 0 10px;
   text-align: center;
+  height: calc( 100% - 89px );
 }
 
 .page-dashboard table tbody{
-  height: 500px;
+  height: calc( 100% - 41px );
   overflow: auto;
   display: block;
 }
@@ -113,7 +115,7 @@ tbody tr {
 
 .page-tab-runtime form.form-inline{
   text-align: center;
-  width: 500px;
+  justify-content: center;
   margin: auto;
 }
 
@@ -123,4 +125,12 @@ tbody tr {
 
 .process-status{
   margin: 50px 0;
+}
+
+#framesettings{
+  text-align: center;
+}
+
+#framesettings form{
+  justify-content: center;
 }

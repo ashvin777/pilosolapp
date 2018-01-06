@@ -1,12 +1,9 @@
+id,name,number
+1,AANP FRAME,50100-AAN-C000
+2,AANP FRAME 2,50100-AAN-C0002
+3,AANP FRAME 3,50100-AAN-C0003
 
-INSERT INTO frames(id, name) 
-VALUES 
-  (1, 'frame1');
-
-INSERT INTO frames(id, name) 
-VALUES 
-  (2, 'frame2');
-
-INSERT INTO frames(id, name) 
-VALUES 
-  (3, 'frame3');
+//users
+id,username,password
+1,admin,admin
+2,operator,operator

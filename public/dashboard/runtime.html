@@ -1,7 +1,7 @@
 <div class="page-tab page-tab-runtime">
 
-  <h3>NOTE:
-    <span class="text-warning">Before starting the process please make sure to choose the frame type</span>
+  <h3 ng-if="!selectedFrame.id" >
+    <span class="text-warning">Please select a frame type before start</span>
   </h3>
 
 
@@ -9,7 +9,7 @@
 
     <div class="input-group">
       <div class="input-group-prepend">
-        <label class="input-group-text">Frame Type</label>
+        <label class="input-group-text">Set Frame Type</label>
       </div>
       <select class="custom-select" ng-options="frame.name for frame in frames" ng-model="frame"></select>
     </div>
@@ -21,13 +21,14 @@
 
   <div class="process-status">
 
-    <p>
-      <b>Selected Frame</b>
-      <br/> {{selectedFrame.name}}</p>
-    <p>
-      <!-- <b>Next Frame Number</b>
-      <br/>01/11/2017-B-0001</p> -->
+    <b>Selected Frame Name - </b>
+    <br/>
+    <h2>{{selectedFrame.name}}</h2>
+    <b>Selected Frame Code - </b>
+    <br/>
+    <h2>{{selectedFrame.number}}</h2>
 
-    <!-- <p><b>Processs Status</b> <br/>Running</p> -->
+    <b>Last Frame Dynamic Number</b>
+    <h2>{{getTime(lastLog.timestamp) | date:'MM-dd-yyyy' }}-{{lastLog.shiftnumber}}-{{lastLog.framenumber}}</h2>
   </div>
 </div>
