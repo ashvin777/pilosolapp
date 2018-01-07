@@ -6,6 +6,7 @@ function DashboardController($scope, $rootScope, $http, $interval, $timeout) {
   $scope.logs = [];
   $scope.shifts = [];
   $scope.lastLog = {};
+  $scope.options = {};
 
   $scope.searchBy = '';
 
@@ -54,7 +55,9 @@ function DashboardController($scope, $rootScope, $http, $interval, $timeout) {
 
   var isLoadedForFirstTime = false;
   $scope.getLogs = function () {
-    $http.get(BASE_URL + 'logs').then(function (logs) {
+    $http.get(BASE_URL + 'logs', {
+      params: $scope.options
+    }).then(function (logs) {
 
       $timeout(function () {
         if ($scope.logs.length !== logs.data.length) {
@@ -190,7 +193,9 @@ function DashboardController($scope, $rootScope, $http, $interval, $timeout) {
 
       var result = [];
       for (var i = index; i <= index + count - 1; i++) {
-        result.push($scope.logs[i]);
+        if ($scope.logs[i]) {
+          result.push($scope.logs[i]);
+        }
       }
       success(result);
     }, 100);
@@ -199,6 +204,23 @@ function DashboardController($scope, $rootScope, $http, $interval, $timeout) {
   $scope.logsDatasource = {
     get: get
   };
+
+  $scope.searchLogs = function () {
+    if ($scope.searchBy && $scope.searchString) {
+
+      $scope.options = {
+        searchBy: $scope.searchBy,
+        searchString: $scope.searchString,
+        startTime: $scope.searchStartTime,
+        endTime: $scope.searchEndTime
+      };
+
+      $scope.getLogs();
+
+    } else {
+      alert('Please select search by and search text');
+    }
+  }
 
 }
 

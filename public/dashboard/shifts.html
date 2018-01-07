@@ -1,20 +1,28 @@
 <form class="form-inline">
 
-  <div class="form-group mx-sm-3 mb-2">
-    <input type="text" class="form-control" ng-model="selectedShift.name" placeholder="Add new shift name...">
+  <div class="form-group mx-sm-3 mb-2 text-white">
+    Shift Name:
   </div>
 
   <div class="form-group mx-sm-3 mb-2">
-    <input type="time" class="form-control" ng-model="selectedShift.starttime" placeholder="Enter start time...">
+    <input type="text" class="form-control form-control-sm" ng-model="selectedShift.name" placeholder="Enter shift name...">
+  </div>
+
+  <div class="form-group mx-sm-3 mb-2 text-white">
+    From:
+  </div>
+
+  <div class="form-group mx-sm-3 mb-2">
+    <input type="time" class="form-control form-control-sm" ng-model="selectedShift.starttime" placeholder="Enter start time...">
   </div>
   <div class="form-group mx-sm-3 mb-2 text-white">
-    to
+    To:
   </div>
   <div class="form-group mx-sm-3 mb-2">
-    <input type="time" class="form-control" ng-model="selectedShift.endtime" placeholder="Enter end time...">
+    <input type="time" class="form-control form-control-sm" ng-model="selectedShift.endtime" placeholder="Enter end time...">
   </div>
 
-  <button type="submit" class="btn btn-primary mx-sm-3 mb-2" ng-click="addShift(selectedShift)">Add Shift</button>
+  <button type="submit" class="btn btn-primary mx-sm-3 mb-2 btn-sm" ng-click="addShift(selectedShift)">Add Shift</button>
 </form>
 
 <table class="table table-dark table-striped table-bordered table-sm">

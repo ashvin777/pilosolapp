@@ -7,14 +7,14 @@
 
   <form class="form-inline">
 
-    <div class="input-group">
+    <div class="input-group input-group-sm">
       <div class="input-group-prepend">
         <label class="input-group-text">Set Frame Type</label>
       </div>
-      <select class="custom-select" ng-options="frame.name for frame in frames" ng-model="frame"></select>
+      <select class="custom-select custom-select-sm" ng-options="frame.name for frame in frames" ng-model="frame"></select>
     </div>
 
-    <button type="submit" class="btn btn-primary" ng-click="setSelectedFrame(frame)">Set Frame</button>
+    <button type="submit" class="btn btn-primary btn-sm" ng-click="setSelectedFrame(frame)">Set Frame</button>
 
   </form>
 

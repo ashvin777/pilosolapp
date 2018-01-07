@@ -134,3 +134,7 @@ tbody tr {
 #framesettings form{
   justify-content: center;
 }
+
+.form-inline{
+  justify-content: center;
+}
