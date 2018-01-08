@@ -97,6 +97,10 @@ tbody tr {
   table-layout: fixed;
 }
 
+thead{
+  background: #027aff;
+}
+
 .page-dashboard table{
   padding: 0 10px;
   text-align: center;

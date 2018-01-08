@@ -59,18 +59,22 @@ function DashboardController($scope, $rootScope, $http, $interval, $timeout, $st
       params: $scope.options
     }).then(function (logs) {
 
-      //$timeout(function () {
+      $timeout(function () {
+
+        $scope.logs = [];
         // if ($scope.logs.length !== logs.data.length || $scope.options.searchBy ) {
-          $scope.logs = logs.data;
-          $scope.lastLog = $scope.logs[0];
+        $scope.logs = logs.data;
+        $scope.lastLog = $scope.logs[0];
+        if ($scope.logsAdapter) {
           $scope.logsAdapter.reload(0);
+        }
         // } else if (isLoadedForFirstTime == false) {
         //   $scope.logs = logs.data;
         //   $scope.lastLog = $scope.logs[0];
         //   $scope.logsAdapter.reload(0);
         //   isLoadedForFirstTime = true;
         // }
-      //});
+      }, 100);
 
     });
   }
@@ -118,8 +122,9 @@ function DashboardController($scope, $rootScope, $http, $interval, $timeout, $st
 
   $scope.downloadLogs = function () {
 
-    var path = window.prompt('Enter folder path');
-
+    // var path = window.prompt('Enter folder path');
+    var path = "/Users/ashvin/Documents/Pilosol/pilosolapp/public/test.xlsx";
+    
     if (path) {
       $http.get(BASE_URL + 'downloadLogs?path=' + path).then(function () {
 
@@ -239,13 +244,12 @@ function DashboardController($scope, $rootScope, $http, $interval, $timeout, $st
 
   var ws = new WebSocket("ws://localhost:1880/ws/logs");
 
-  ws.onmessage = function (evt) 
-  { 
+  ws.onmessage = function (evt) {
     $scope.getLogs();
   };
 
-  window.onbeforeunload = function(event) {
-     socket.close();
+  window.onbeforeunload = function (event) {
+    socket.close();
   };
 
 }
