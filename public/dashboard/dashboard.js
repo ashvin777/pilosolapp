@@ -124,10 +124,10 @@ function DashboardController($scope, $rootScope, $http, $interval, $timeout, $st
 
     // var path = window.prompt('Enter folder path');
     var path = "/Users/ashvin/Documents/Pilosol/pilosolapp/public/test.xlsx";
-    
+
     if (path) {
       $http.get(BASE_URL + 'downloadLogs?path=' + path).then(function () {
-
+        alert('File save at path ' + path);
       });
     }
   }
