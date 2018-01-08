@@ -17,6 +17,7 @@ CREATE TABLE components (
 CREATE TABLE logs (
 	id bigserial NOT NULL,
 	frameType text NOT NULL,
+	frameDynamicCode text,
 	frameNumber text,
 	frameComponent text NOT NULL,
 	shiftNumber text NOT NULL,

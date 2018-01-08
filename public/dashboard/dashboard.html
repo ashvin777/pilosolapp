@@ -1,7 +1,10 @@
 <div class="page page-dashboard">
   <header>
     iRobotics
-    <span class="small">Welcome {{username}}</span>
+    <span class="username">
+      <span class="msg">Welcome {{username}}</span>
+      <span class="logout" ng-click="logout()">Logout</span>
+    </span>
   </header>
 
   <div class="body">
@@ -22,11 +25,11 @@
         <ng-include src="'dashboard/reports.html'"></ng-include>
       </div>
 
-      <div class="tab-pane fade show" ng-class="{ active: activeTab.id === 'shifts'}">
+      <div class="tab-pane fade show" ng-class="{ active: activeTab.id === 'shifts', disable: username != 'admin'}">
         <ng-include src="'dashboard/shifts.html'"></ng-include>
       </div>
 
-      <div class="tab-pane fade show" ng-class="{ active: activeTab.id === 'framesettings'}">
+      <div class="tab-pane fade show" ng-class="{ active: activeTab.id === 'framesettings', disable: username != 'admin'}">
         <ng-include src="'dashboard/framesettings.html'"></ng-include>
       </div>
 

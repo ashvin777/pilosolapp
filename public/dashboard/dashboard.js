@@ -1,4 +1,4 @@
-function DashboardController($scope, $rootScope, $http, $interval, $timeout) {
+function DashboardController($scope, $rootScope, $http, $interval, $timeout, $state) {
 
   $scope.username = $rootScope.username || 'admin';
   $scope.frames = [];
@@ -59,18 +59,18 @@ function DashboardController($scope, $rootScope, $http, $interval, $timeout) {
       params: $scope.options
     }).then(function (logs) {
 
-      $timeout(function () {
-        if ($scope.logs.length !== logs.data.length) {
+      //$timeout(function () {
+        // if ($scope.logs.length !== logs.data.length || $scope.options.searchBy ) {
           $scope.logs = logs.data;
           $scope.lastLog = $scope.logs[0];
           $scope.logsAdapter.reload(0);
-        } else if (isLoadedForFirstTime == false) {
-          $scope.logs = logs.data;
-          $scope.lastLog = $scope.logs[0];
-          $scope.logsAdapter.reload(0);
-          isLoadedForFirstTime = true;
-        }
-      });
+        // } else if (isLoadedForFirstTime == false) {
+        //   $scope.logs = logs.data;
+        //   $scope.lastLog = $scope.logs[0];
+        //   $scope.logsAdapter.reload(0);
+        //   isLoadedForFirstTime = true;
+        // }
+      //});
 
     });
   }
@@ -170,9 +170,9 @@ function DashboardController($scope, $rootScope, $http, $interval, $timeout) {
 
   $scope.getLogs();
 
-  $interval(function () {
-    $scope.getLogs();
-  }, 5000);
+  // $interval(function () {
+  //   $scope.getLogs();
+  // }, 5000);
 
   //$scope.getSelectedFrame();
   $scope.getShifts();
@@ -222,7 +222,36 @@ function DashboardController($scope, $rootScope, $http, $interval, $timeout) {
     }
   }
 
+  $scope.clear = function () {
+    $scope.options = {};
+    $scope.searchBy = null;
+    $scope.searchString = '';
+    $scope.searchStartTime = null;
+    $scope.searchEndTime = null;
+    $scope.getLogs();
+  }
+
+  $scope.logout = function () {
+    $state.go('login');
+  }
+
+
+
+  var ws = new WebSocket("ws://localhost:1880/ws/logs");
+
+  ws.onmessage = function (evt) 
+  { 
+    $scope.getLogs();
+  };
+
+  window.onbeforeunload = function(event) {
+     socket.close();
+  };
+
 }
+
+
+
 
 let DashboardComponent = {
   templateUrl: 'dashboard/dashboard.html',

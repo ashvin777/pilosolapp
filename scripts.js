@@ -8,7 +8,7 @@ msg.signals.shift();
 
 var signals = msg.signals;
 
-if (selectedFrame && getShift() && !isNaN(selectedFrame.serial)) {
+if (selectedFrame && getShift() && selectedFrame.serial > 1) {
 
     msg.payload = [];
 
@@ -32,7 +32,8 @@ if (selectedFrame && getShift() && !isNaN(selectedFrame.serial)) {
                 shiftnumber: getShift(),
                 processingtime: "",
                 status: msg.signals[index] === true ? "PRESENT" : "ABSENT",
-                timestamp: new Date()
+                timestamp: new Date(),
+                frameDynamicCode: getFrameCode(new Date(), frameSerial)
             });
         } else if(!isValid && msg.signals[index] == false){
             msg.payload.push({
@@ -43,7 +44,8 @@ if (selectedFrame && getShift() && !isNaN(selectedFrame.serial)) {
                 shiftnumber: getShift(),
                 processingtime: "",
                 status: msg.signals[index] === true ? "PRESENT" : "ABSENT",
-                timestamp: new Date()
+                timestamp: new Date(),
+                frameDynamicCode: '---'
             });
         }
     });
@@ -87,4 +89,18 @@ function getShift() {
     }
 
     return shiftName;
+}
+
+function getFrameCode(date, frameSerial) {
+    var dd = date.getDate();
+    var mm = date.getMonth()+1; //January is 0!
+    
+    var yyyy = date.getFullYear();
+    if(dd<10){
+        dd='0'+dd;
+    } 
+    if(mm<10){
+        mm='0'+mm;
+    } 
+    return dd+'-'+mm+'-'+yyyy +'-'+getShift()+'-'+frameSerial;
 }

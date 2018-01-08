@@ -5,7 +5,7 @@
       <label class="input-group-text">Search By..</label>
     </div>
     <select class="custom-select custom-select-sm" ng-model="$parent.searchBy" required>
-      <option value="framenumber">Frame Dynamic Number</option>
+      <option value="frameDynamicCode">Frame Dynamic Number</option>
       <option value="frametype">Frame Name</option>
       <option value="shiftnumber">Shift Number</option>
       <option value="framecomponent">Component</option>
@@ -32,6 +32,8 @@
 
   <button type="submit" class="btn btn-primary mx-sm-3 mb-2 btn-sm">Search</button>
 
+  <button type="button" class="btn btn-primary mx-sm-3 mb-2 btn-sm" ng-click="clear()">Clear</button>
+
   <button type="button" class="btn btn-primary mx-sm-3 mb-2 btn-sm" ng-click="downloadLogs()">Download</button>
 </form>
 
@@ -47,11 +49,12 @@
       <th width="200px" scope="col">Timestamp</th>
     </tr>
   </thead>
-  <tbody ui-scroll-viewport>
+  <tbody ui-scroll-viewport >
     <tr ui-scroll="log in logsDatasource" ng-class="{ 'text-danger' : log.status != 'PRESENT'}" adapter="$parent.logsAdapter">
       <th width="100px" scope="col">{{log.id}}</th>
-      <td width="300px" ng-if="log.framenumber != '---'">{{getTime(log.timestamp) | date:'MM-dd-yyyy' }}-{{log.shiftnumber}}-{{log.framenumber}}</td>
-      <td width="300px" ng-if="log.framenumber == '---'">{{log.framenumber}}</td>
+      <!-- <td width="300px" ng-if="log.framenumber != '---'">{{getTime(log.timestamp) | date:'MM-dd-yyyy' }}-{{log.shiftnumber}}-{{log.framenumber}}</td>
+      <td width="300px" ng-if="log.framenumber == '---'">{{log.framenumber}}</td> -->
+      <td width="300px">{{log.framedynamiccode}}</td>
       <td>{{log.frametype}}</td>
       <td>{{log.framecomponent}}</td>
       <td width="200px">{{log.shiftnumber}}</td>
