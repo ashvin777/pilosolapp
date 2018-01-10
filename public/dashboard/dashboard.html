@@ -1,19 +1,47 @@
 <div class="page page-dashboard">
-  <header>
-    iRobotics
-    <span class="username">
-      <span class="msg">Welcome {{username}}</span>
-      <span class="logout" ng-click="logout()">Logout</span>
-    </span>
-  </header>
 
-  <div class="body">
 
-    <ul class="nav nav-tabs">
-      <li class="nav-item" ng-repeat="tab in tabs">
-        <a class="nav-link" ng-class="{ active: activeTab.id === tab.id }" ng-click="setTab(tab)">{{tab.label}}</a>
+  <div class="left-panel">
+
+    <ul class="list-group">
+
+      <li class="username">
+        Welcome {{$ctrl.username}}
+      </li>
+      <li ng-repeat="tab in $ctrl.tabs" ng-class="{ active: $ctrl.current === tab.state }" ng-click="$ctrl.setTab(tab)" ui-sref="{{tab.state}}">
+        {{tab.label}}
+      </li>
+      <li class="logout" ng-click="$ctrl.logout()">
+        Logout
       </li>
     </ul>
+
+  </div>
+
+  <div class="right-panel">
+    <div class="frame">
+
+      <div class="group">
+        <div class="title">Frame Name</div>
+        <div class="value">{{$root.selectedFrame.name}}</div>
+      </div>
+
+      <div class="group">
+        <div class="title">Frame Code</div>
+        <div class="value">{{$root.selectedFrame.number}}</div>
+      </div>
+
+      <div class="group">
+        <div class="title">Last Frame Serial Number</div>
+        <div class="value">{{$root.logs[0].framedynamiccode}}</div>
+      </div>
+    </div>
+
+    <ui-view></ui-view>
+  </div>
+
+
+  <!-- <div class="body">
 
     <div class="tab-content">
 
@@ -35,5 +63,5 @@
 
     </div>
 
-  </div>
+  </div> -->
 </div>

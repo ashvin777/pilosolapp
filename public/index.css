@@ -1,104 +1,47 @@
 html,
 body {
-  font-size: 15px;
+  font-size: 18px;
   height: 100%;
-  background: #ececec;
-
+  background: #2f323a;
   min-width: 1224px;
 }
 
 header {
   height: 100px;
-  line-height: 100px;
-  font-size: 34px;
-  font-weight: bold;
-  text-align: center;
-  background: #32383e;
-  color: white;
-
-  position: relative;
+  background: #feff05;
+  padding: 10px;
+  box-shadow: 0 0 6px #a0a0a0;
 }
-
-.form-control {
-  /* padding-top: 15px;
-  padding-bottom: 15px; */
-}
-
-.nav-tabs {
-  border-bottom: 1px solid #32383e;
-}
-
-.nav-tabs .nav-item {
-  margin-bottom: -2px;
-}
-
-.nav-tabs .nav-link {
-  cursor: pointer;
-}
-
-.nav-tabs .nav-link.active {
-  color: white;
-  background: #32383e;
-  border: 0;
-}
-
-.nav-tabs .nav-link.active:hover {
-  color: white;
-}
-
-.tab-content {
-  height: calc( 100% - 51px);
-}
-
-.tab-content>.tab-pane {
-  background: #212529;
-  height: 100%;
-  color: white;
-  overflow: hidden;
-  position: relative;
-}
-
-.tab-content>.tab-pane.disable:before{
-  content: '';
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  background: black;
-  opacity: 0.35;
-  z-index: 100;
-} 
 
 .page {
-  height: 100%;
+  height: calc( 100% - 100px);
   min-width: 1124px;
   overflow: auto;
 }
 
-.page-login .body,
-.page-dashboard .body {
-  width: 700px;
-  margin: auto;
-  padding: 50px;
-  margin-top: 10px;
-  height: calc( 100% - 110px);
+.table, .table tbody{
+  width: 100%;
 }
+
+.table tr{
+  width: 100%;
+  table-layout: fixed;
+  display: table;
+}
+
+
+.form-title{
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+
+  margin-top: 30px;
+}
+/* 
 
 .page-dashboard .body {
   width: 100%;
   padding: 10px;
-}
-
-thead,
-tbody tr {
-  font-size: 16px;
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-}
-
-thead{
-  background: #027aff;
 }
 
 .page-dashboard table{
@@ -180,4 +123,4 @@ thead{
   color: #52a5ff;
   text-decoration: underline;
   cursor: pointer;
-}
+} */

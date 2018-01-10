@@ -1,34 +1,40 @@
-function LoginController($scope, $rootScope, $http, $state) {
-  $scope.username = '';
-  $scope.password = '';
+function LoginController($rootScope, $http, $state) {
+
+  var self = this;
+
+  self.username = '';
+  self.password = '';
+  self.isLoginFailed = false;
   const BASE_URL = 'http://localhost:1880/';
 
-  $scope.login = function () {
-
+  self.login = function () {
     $http.get(BASE_URL + 'users')
-      .then((res) => {
+      .then(self.loginSuccess);
+  }
 
-        var isMatched = false;
-        res.data.some(function (user) {
-          if (user.username == $scope.username && user.password == $scope.password) {
-            isMatched = true;
-          }
-        });
+  self.loginSuccess = function (res) {
 
-        if (isMatched) {
-          $rootScope.username = $scope.username;
-          $state.go('dashboard');
-        } else {
-          alert("Login failed. Please try with correct credentials");
-        }
+    var isMatched = false;
+    res.data.some(function (user) {
+      if (user.username == self.username && user.password == self.password) {
+        isMatched = true;
+      }
+    });
+    if (isMatched) {
+      self.isLoginFailed = false;
+      $rootScope.username = self.username;
+      $state.go('dashboard');
+    } else {
+      self.isLoginFailed = true;
+    }
 
-      });
   }
 }
 
 let LoginComponent = {
   templateUrl: 'login/login.html',
-  controller: LoginController
+  controller: LoginController,
+  controllerAs: '$ctrl'
 };
 
 angular.module('app')

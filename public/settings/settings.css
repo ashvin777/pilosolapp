@@ -1,0 +1,8 @@
+.page-settings{
+  padding: 0 20px;
+  height: calc( 100% - 80px);
+}
+
+.page-settings table{
+  margin-top: 40px;
+}
