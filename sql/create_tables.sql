@@ -3,6 +3,7 @@ CREATE TABLE frames (
 		name text NOT NULL,
 		number text,
 		serial text,
+		serialStart text,
 		PRIMARY KEY (ID)
 );
 

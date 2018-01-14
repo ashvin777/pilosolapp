@@ -73,9 +73,17 @@ var settings = {
     }]
   },
   httpNodeCors: {
-      origin: "*",
-      methods: "GET,PUT,POST,DELETE"
+    origin: "*",
+    methods: "GET,PUT,POST,DELETE"
   },
+  logging: {
+    // Console logging
+    console: {
+      level: "info",
+      metrics: false,
+      audit: false
+    }
+  }
 };
 
 // Initialise the runtime with a server and settings

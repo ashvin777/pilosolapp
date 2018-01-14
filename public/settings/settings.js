@@ -58,8 +58,8 @@ function SettingsController($http, $interval, $timeout, $rootScope) {
 
 
   self.saveFrameSerial = function (frame) {
-    if (!(frame.serial >= 0)) {
-      frame.serial = '';
+    if (!(frame.serialstart >= 0)) {
+      frame.serialstart = '';
       alert('Please enter a number');
       return;
     }
