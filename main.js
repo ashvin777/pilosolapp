@@ -177,7 +177,7 @@ function createWindow() {
     title: "Pilosol App",
     fullscreenable: true,
     //titleBarStyle: "hidden",
-    width: 1224,
+    width: 1384,
     height: 968,
     // icon: __dirname + "/nodered.png"
   });

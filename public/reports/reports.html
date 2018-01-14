@@ -3,7 +3,7 @@
 
   <form ng-submit="$ctrl.searchLogs()">
 
-    <select class="custom-select" ng-model="$ctrl.searchBy" required>
+    <select class="custom-select custom-select-sm" ng-model="$ctrl.searchBy" required>
       <option value="none" selected>Search by...</option>
       <option value="frameDynamicCode">Frame Serial Number</option>
       <option value="frametype">Frame Name</option>
@@ -12,15 +12,17 @@
       <option value="status">Status</option>
     </select>
 
-    <input type="text" ng-model="$ctrl.searchString" class="form-control" placeholder="Enter search text..." required>
-    <input type="date" ng-model="$ctrl.searchStartTime" class="form-control" placeholder="Enter start time..." required>
-    <input type="date" ng-model="$ctrl.searchEndTime" class="form-control" placeholder="Enter end time..." required>
+    <input type="text" ng-model="$ctrl.searchString" class="form-control form-control-sm" placeholder="Enter search text..." required>
+    <input type="date" ng-model="$ctrl.searchStartTime" class="form-control form-control-sm" placeholder="Enter start time..." required>
+    <input type="date" ng-model="$ctrl.searchEndTime" class="form-control form-control-sm" placeholder="Enter end time..." required>
 
-    <button type="submit" class="btn btn-primary">Search</button>
+    <button type="submit" class="btn btn-primary btn-sm">Search</button>
 
-    <button type="button" class="btn btn-primary" ng-click="$ctrl.clear()">Clear</button>
+    <button type="button" class="btn btn-primary btn-sm" ng-click="$ctrl.clear()">Clear</button>
 
-    <button type="button" class="btn btn-primary" ng-click="$ctrl.downloadLogs()">Download</button>
+    <button type="button" class="btn btn-primary btn-sm" ng-click="$ctrl.getLogs()">Refresh</button>
+
+    <button type="button" class="btn btn-primary btn-sm" ng-click="$ctrl.downloadLogs()">Download</button>
 
   </form>
 

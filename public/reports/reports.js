@@ -73,18 +73,22 @@ function ReportsController($http, $timeout, $rootScope) {
     self.searchStartTime = null;
     self.searchEndTime = null;
     self.getLogs();
-  }
+  };
 
   self.downloadLogs = function () {
 
-    // var path = window.prompt('Enter folder path');
-    var path = "/Users/ashvin/Documents/Pilosol/pilosolapp/public/test.xlsx";
 
-    if (path) {
-      $http.get(BASE_URL + 'downloadLogs?path=' + path).then(function () {
-        alert('File save at path ' + path);
-      });
-    }
+    bootbox.prompt("Enter the .xlsz file path, for example C:/test.xlsx", function (path) {
+
+      // var path = window.prompt('Enter folder path');
+      // var path = "/Users/ashvin/Documents/Pilosol/pilosolapp/public/test.xlsx";
+
+      if (path) {
+        $http.get(BASE_URL + 'downloadLogs?path=' + path, { params: self.options }).then(function () {
+          alert('File save at path ' + path);
+        });
+      }
+    });
   }
 
   self.getFormattedDate = function (date) {
