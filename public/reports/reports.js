@@ -78,7 +78,7 @@ function ReportsController($http, $timeout, $rootScope) {
   self.downloadLogs = function () {
 
 
-    bootbox.prompt("Enter the .xlsz file path, for example C:/test.xlsx", function (path) {
+    bootbox.prompt("Enter the .xlsx file path, for example C:/test.xlsx", function (path) {
 
       // var path = window.prompt('Enter folder path');
       // var path = "/Users/ashvin/Documents/Pilosol/pilosolapp/public/test.xlsx";
