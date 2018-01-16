@@ -21,7 +21,9 @@ const {
 } = electron;
 
 const path = require('path')
-const urlPlugin = require('url')
+const urlPlugin = require('url');
+
+const { exec } = require('child_process');
 
 // this should be placed at top of main.js to handle squirrel setup events quickly
 if (handleSquirrelEvent()) {
@@ -73,17 +75,9 @@ var settings = {
     }]
   },
   httpNodeCors: {
-    origin: "*",
-    methods: "GET,PUT,POST,DELETE"
+      origin: "*",
+      methods: "GET,PUT,POST,DELETE"
   },
-  logging: {
-    // Console logging
-    console: {
-      level: "info",
-      metrics: false,
-      audit: false
-    }
-  }
 };
 
 // Initialise the runtime with a server and settings
@@ -177,7 +171,7 @@ function createWindow() {
     title: "Pilosol App",
     fullscreenable: true,
     //titleBarStyle: "hidden",
-    width: 1384,
+    width: 1424,
     height: 968,
     // icon: __dirname + "/nodered.png"
   });
@@ -236,18 +230,21 @@ app.on('activate', function () {
 });
 
 // Start the Node-RED runtime, then load the inital page
-RED.start().then(function () {
-  server.listen(listenPort, "127.0.0.1", function () {
+//RED.start().then(function () {
+ // server.listen(listenPort, "127.0.0.1", function () {
     // mainWindow.loadURL("http://127.0.0.1:"+listenPort+url);
 
+exec("node-red");
+setTimeout(function(){
     mainWindow.loadURL(urlPlugin.format({
       pathname: path.join(__dirname, 'public/index.html'),
       protocol: 'file:',
       slashes: true
     }));
+}, 4000);
 
-  });
-});
+ // });
+//});
 
 ///////////////////////////////////////////////////////
 // All this Squirrel stuff is for the Windows installer
